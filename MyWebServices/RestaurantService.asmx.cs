@@ -1,4 +1,5 @@
-﻿using MyWebServices.Models;
+﻿using MyWebServices.DAL;
+using MyWebServices.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,31 @@ namespace MyWebServices
     public class RestaurantService : System.Web.Services.WebService
     {
 
+        private RestaurantDAL _restaurantDAL;
+        //ctor
+        public RestaurantService()
+        {
+            _restaurantDAL = new RestaurantDAL();
+        }
+
+        [WebMethod]
+        public List<Restaurant> GetAllRestaurant()
+        {
+            return _restaurantDAL.GetAll();
+        }
+
+        [WebMethod]
+        public Restaurant GetById(int restaurantID)
+        {
+            return _restaurantDAL.GetByID(restaurantID);
+        }
+
+        [WebMethod]
+        public List<Restaurant> GetByNama(string namaRestaurant)
+        {
+            return _restaurantDAL.GetByName(namaRestaurant);
+        }
+
         [WebMethod]
         public string HelloWorld()
         {
@@ -25,7 +51,7 @@ namespace MyWebServices
         }
 
         [WebMethod]
-        public List<Restaurant> GetAllRestaurant()
+        public List<Restaurant> GetAllRestaurantList()
         {
             Restaurant resto1 = new Restaurant
             {
