@@ -143,6 +143,39 @@ namespace MyWebServices.DAL
                     conn.Close();
                 }
             }
-        } 
+        }
+
+        public string UpdateRestaurant(Restaurant resto)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConn()))
+            {
+                string strSql = @"update Restaurants set NamaRestaurant=@NamaRestaurant,
+                                  Alamat=@Alamat,Tanggal=@Tanggal,Harga=@Harga) 
+                                  where RestaurantID=@RestaurantID";
+
+                SqlCommand cmd = new SqlCommand(strSql, conn);
+                cmd.Parameters.AddWithValue("NamaRestaurant", resto.NamaRestaurant);
+                cmd.Parameters.AddWithValue("Alamat", resto.Alamat);
+                cmd.Parameters.AddWithValue("Tanggal", resto.Tanggal);
+                cmd.Parameters.AddWithValue("Harga", resto.Harga);
+                cmd.Parameters.AddWithValue("RestaurantID", resto.RestaurantID);
+
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    return "Data Restaurant berhasil di update";
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    conn.Close();
+                }
+            }
+        }
     }
 }
