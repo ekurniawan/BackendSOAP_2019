@@ -150,7 +150,7 @@ namespace MyWebServices.DAL
             using (SqlConnection conn = new SqlConnection(GetConn()))
             {
                 string strSql = @"update Restaurants set NamaRestaurant=@NamaRestaurant,
-                                  Alamat=@Alamat,Tanggal=@Tanggal,Harga=@Harga) 
+                                  Alamat=@Alamat,Tanggal=@Tanggal,Harga=@Harga  
                                   where RestaurantID=@RestaurantID";
 
                 SqlCommand cmd = new SqlCommand(strSql, conn);
