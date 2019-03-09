@@ -129,6 +129,7 @@ namespace MyWebServices.DAL
 
                 try
                 {
+                    conn.Open();
                     cmd.ExecuteNonQuery();
                     return "Data Restaurant berhasil ditambah";
                 }

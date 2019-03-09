@@ -45,6 +45,26 @@ namespace MyWebServices
         }
 
         [WebMethod]
+        public string TambahRestaurant(string namaRestaurant,string alamat,DateTime tanggal,decimal harga)
+        {
+            Restaurant newResto = new Restaurant();
+            newResto.NamaRestaurant = namaRestaurant;
+            newResto.Alamat = alamat;
+            newResto.Tanggal = tanggal;
+            newResto.Harga = harga;
+
+            try
+            {
+                string hasil = _restaurantDAL.TambahRestaurant(newResto);
+                return hasil;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        [WebMethod]
         public string HelloWorld()
         {
             return "Hello World";
