@@ -177,5 +177,30 @@ namespace MyWebServices.DAL
                 }
             }
         }
+
+        public string DeleteRestaurant(string restaurantID)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConn()))
+            {
+                string strSql = @"delete from Restaurants where RestaurantID=@RestaurantID";
+                SqlCommand cmd = new SqlCommand(strSql, conn);
+                cmd.Parameters.AddWithValue("RestaurantID", restaurantID);
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    return "Data Restaurant dengan ID " + restaurantID + " berhasil didelete";
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    conn.Close();
+                }
+            }
+        }
     }
 }
