@@ -18,7 +18,6 @@ namespace MyWebServices
     // [System.Web.Script.Services.ScriptService]
     public class RestaurantService : System.Web.Services.WebService
     {
-
         private RestaurantDAL _restaurantDAL;
         //ctor
         public RestaurantService()
@@ -78,6 +77,20 @@ namespace MyWebServices
             try
             {
                 string hasil = _restaurantDAL.UpdateRestaurant(editResto);
+                return hasil;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        [WebMethod]
+        public string DeleteRestaurant(string restaurantID)
+        {
+            try
+            {
+                string hasil = _restaurantDAL.DeleteRestaurant(restaurantID);
                 return hasil;
             }
             catch (Exception ex)

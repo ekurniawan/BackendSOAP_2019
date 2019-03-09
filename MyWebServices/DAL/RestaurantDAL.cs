@@ -17,6 +17,7 @@ namespace MyWebServices.DAL
                 .ConnectionStrings["SQLServerConn"].ConnectionString;
         }
 
+        //data lebih dari satu record
         public List<Restaurant> GetAll()
         {
             List<Restaurant> listRestaurant = new List<Restaurant>();
